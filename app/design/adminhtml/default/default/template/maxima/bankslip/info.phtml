@@ -1,0 +1,18 @@
+Boleto Bancário
+<br /><br />
+<?php
+	
+	
+	if($_info = $this->getInfo())
+	{
+		if($order = $_info->getOrder())
+		{
+			$slip = Mage::getModel('Maxima_BankSlip/slip')->loadByOrder($order);
+			$statuses =Mage::getModel('Maxima_BankSlip/slip_status')->toArray();
+			
+			echo $this->__("Current state") . ": " . $this->__($statuses[$slip->getStatus()]);
+		}
+	}
+
+?>
+<br /><br />

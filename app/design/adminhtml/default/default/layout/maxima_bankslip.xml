@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+	
+	<!-- listagem de boletos -->
+	<maxima_bankslip_adminhtml_slip_index>
+		<reference name="content">
+			<block type="Maxima_BankSlip/adminhtml_slip" name="Maxima_BankSlip.slip_list"/>
+		</reference>
+	</maxima_bankslip_adminhtml_slip_index>
+	
+	<!-- submissao de arquivos retorno -->
+	<maxima_bankslip_adminhtml_returnfile_index>
+		<reference name="content">
+			<block type="Maxima_BankSlip/adminhtml_returnFile_edit" name="Maxima_BankSlip.returnfile"/>
+		</reference>
+	</maxima_bankslip_adminhtml_returnfile_index>
+</layout>

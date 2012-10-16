@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <maxima translate="title" module="Maxima_BankSlip">
+            <title>Máxima</title>
+            <sort_order>90</sort_order>
+            <children>
+                <bankslip translate="title" module="Maxima_BankSlip">
+                    <title>Bank Slips</title>
+                    <children>
+						<list>
+							<title>List</title>
+							<action>bankslip/adminhtml_slip</action>
+						</list>
+						<returnfile>
+							<title>Return Files</title>
+							<action>bankslip/adminhtml_returnFile</action>
+						</returnfile>
+					</children>
+                </bankslip>
+            </children>
+        </maxima>
+    </menu>
+	
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<maxima>
+						<title>Máxima</title>
+						<sort_order>90</sort_order>
+						<children>
+							<bankslip>
+								<title>Bank Slips</title>
+								<sort_order>10</sort_order>
+							</bankslip>
+						</children>
+					</maxima>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+	
+</config> 

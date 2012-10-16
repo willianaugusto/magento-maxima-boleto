@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Maxima_BankSlip>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Maxima_BankSlip>
+	</modules>
+</config>
