@@ -323,50 +323,203 @@ function geraCodigoBanco($numero) {
 
 ?>
 
-<style type=text/css>
-<!--.cp {  font: bold 10px Arial; color: black}
-<!--.ti {  font: 9px Arial, Helvetica, sans-serif}
-<!--.ld { font: bold 15px Arial; color: #000000}
-<!--.ct { FONT: 9px "Arial Narrow"; COLOR: #000033}
-<!--.cn { FONT: 9px Arial; COLOR: black }
-<!--.bc { font: bold 20px Arial; color: #000000 }
-<!--.ld2 { font: bold 12px Arial; color: #000000 }
--->
+<style type="text/css">
+	.cp {  font: bold 10px Arial; color: black}
+	.ti {  font: 9px Arial, Helvetica, sans-serif}
+	.ld { font: bold 15px Arial; color: #000000}
+	.ct { font: 9px "Arial Narrow"; color: #000033}
+	.cn { font: 9px Arial; color: black }
+	.bc { font: bold 20px Arial; color: #000000 }
+	.ld2 { font: bold 12px Arial; color: #000000 }
+	
+	
+	/* textos e imagens */
+	.instructions
+	{
+		font: bold 10px Arial;
+		color: #000000;
+	}
+	
+	.header-bar-code-number
+	{
+		font: bold 12px Arial;
+		color: #000000;
+	}
+	
+	.company-logo
+	{
+		height: 45px;
+	}
+	
+	.company-info
+	{
+		font-size: 9px;
+		font-family: Arial, Helvetica, 'sans-serif';
+	}
+	
+	.large-font
+	{
+		font: bold 20px Arial;
+		color: #000000;
+	}
+	
+	.medium-font
+	{
+		font: bold 15px Arial;
+		color: #000000;
+	}
+	
+	.tiny-font
+	{
+		font: 9px "Arial Narrow";
+		color: #000033;
+	}
+	
+	/* estrutura */
+	.container-row
+	{
+		width: 666px;
+	}
+	
+	.cutting-line
+	{
+		background-image: url('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/6.png');
+		background-repeat: repeat-x;
+		width: 665px;
+		height: 1px;
+	}
+	
+	.solid-line
+	{
+		background-image: url('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png');
+		background-repeat: repeat-x;
+		width: 666px;
+		height: 2px;
+	}
+	
+	.container-company-logo
+	{
+		float: left;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	
+	.container-bank-logo
+	{
+		float: left;
+		width: 150px;
+		height: 40px;
+		background-image: url('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/itau.jpg');
+	}
+	
+	.large-vertical-separator
+	{
+		width: 2px;
+		height: 22px;
+		background-image: url('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/3.png');
+	}
+	
+	.small-vertical-separator
+	{
+		width: 1px;
+		height: 19px;
+		background-image: url('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png');
+	}
+	
 </style>
 
-<table width=666 cellspacing=0 cellpadding=0 border=0><tr><td valign=top class=cp><DIV ALIGN="CENTER">Instruções
-de Impressão</DIV></TD></TR><TR><TD valign=top class=cp><DIV ALIGN="left">
-<p>
-<li>Imprima em impressora jato de tinta (ink jet) ou laser em qualidade normal ou alta (Não use modo econômico).<br>
-<li>Utilize folha A4 (210 x 297 mm) ou Carta (216 x 279 mm) e margens mínimas à esquerda e à direita do formulário.<br>
-<li>Corte na linha indicada. Não rasure, risque, fure ou dobre a região onde se encontra o código de barras.<br>
-<li>Caso não apareça o código de barras no final, clique em F5 para atualizar esta tela.
-<li>Caso tenha problemas ao imprimir, copie a seqüencia numérica abaixo e pague no caixa eletrônico ou no internet banking:<br><br>
-<span class="ld2">
-&nbsp;&nbsp;&nbsp;&nbsp;Linha Digitável: &nbsp;<?php echo $dadosboleto["linha_digitavel"]?><br>
-&nbsp;&nbsp;&nbsp;&nbsp;Valor: &nbsp;&nbsp;R$ <?php echo $dadosboleto["valor_boleto"]?><br>
-</span>
-</DIV></td></tr></table><br><table cellspacing=0 cellpadding=0 width=666 border=0><TBODY><TR><TD class=ct width=666><img height=1 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/6.png width=665 border=0></TD></TR><TR><TD class=ct width=666><div align=right><b class=cp>Recibo
-do Sacado</b></div></TD></tr></tbody></table><table width=666 cellspacing=5 cellpadding=0 border=0><tr><td width=41></TD></tr></table>
-<table width=666 cellspacing=5 cellpadding=0 border=0 align=Default>
-  <tr>
-    <td width=41><IMG SRC="<?php echo $this->getSkinUrl('images/logo.png'); ?>"></td>
-    <td class=ti width=455><?php echo $dadosboleto["identificacao"]; ?> <?php echo isset($dadosboleto["cpf_cnpj"]) ? "<br>".$dadosboleto["cpf_cnpj"] : '' ?><br>
-	<?php echo $dadosboleto["endereco"]; ?><br>
-	<?php echo $dadosboleto["cidade_uf"]; ?><br>
-    </td>
-    <td align=RIGHT width=150 class=ti>&nbsp;</td>
-  </tr>
-</table>
-<BR><table cellspacing=0 cellpadding=0 width=666 border=0><tr><td class=cp width=150>
-  <span class="campo"><IMG
-      src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/itau.jpg" width="150" height="40"
-      border=0></span></td>
-<td width=3 valign=bottom><img height=22 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/3.png width=2 border=0></td><td class=cpt width=58 valign=bottom><div align=center><font class=bc><?php echo $dadosboleto["codigo_banco_com_dv"]?></font></div></td><td width=3 valign=bottom><img height=22 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/3.png width=2 border=0></td><td class=ld align=right width=453 valign=bottom><span class=ld>
-<span class="campotitulo">
-<?php echo $dadosboleto["linha_digitavel"]?>
-</span></span></td>
-</tr><tbody><tr><td colspan=5><img height=2 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/2.png width=666 border=0></td></tr></tbody></table><table cellspacing=0 cellpadding=0 border=0><tbody><tr><td class=ct valign=top width=7 height=13><img height=13 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png width=1 border=0></td><td class=ct valign=top width=298 height=13>Cedente</td><td class=ct valign=top width=7 height=13><img height=13 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png width=1 border=0></td><td class=ct valign=top width=126 height=13>Agência/Código
+<!-- cabecalho com instrucoes de impressao do documento -->
+<div class="container-row instructions" style="text-align: center;">
+	<span>Instruções de Impressão</span>
+</div>
+
+<div class="container-row instructions">
+	<ul>
+		<li>Imprima em impressora jato de tinta (ink jet) ou laser em qualidade normal ou alta (Não use modo econômico).</li>
+		<li>Utilize folha A4 (210 x 297 mm) ou Carta (216 x 279 mm) e margens mínimas à esquerda e à direita do formulário.</li>
+		<li>Corte na linha indicada. Não rasure, risque, fure ou dobre a região onde se encontra o código de barras.</li>
+		<li>Caso não apareça o código de barras no final, clique em F5 para atualizar esta tela.</li>
+		<li>Caso tenha problemas ao imprimir, copie a seqüencia numérica abaixo e pague no caixa eletrônico ou no internet banking:</li>
+	</ul>
+
+	<div class="header-bar-code-number" style="margin-left: 28px;">
+		Linha Digitável: &nbsp;<?php echo $dadosboleto["linha_digitavel"]; ?>
+	</div>
+	<div class="header-bar-code-number" style="margin-left: 28px;">
+		Valor: &nbsp;&nbsp;R$ <?php echo $dadosboleto["valor_boleto"]; ?>
+	</div>
+</div>
+
+<!-- separacao com marcacao para recorte -->
+<div class="container-row" style="margin: 15px 0 15px 0;">
+	<div class="cutting-line"></div>
+	<div class="instructions" style="width: 665px; text-align: right;"> Recido do Sacado</div>
+</div>
+
+<!-- logomarca e informacoes da empresa -->
+<div class="container-row">
+	<div class="container-company-logo">
+		<img class="company-logo" src="<?php echo $this->getSkinUrl('images/logo.png'); ?>" />
+	</div>
+	<div class="company-info">
+		<?php echo $dadosboleto["identificacao"];  ?><br />
+		<?php echo isset($dadosboleto["cpf_cnpj"]) ? $dadosboleto["cpf_cnpj"] . "<br />" : ''; ?>
+		<?php echo $dadosboleto["endereco"]; ?><br />
+		<?php echo $dadosboleto["cidade_uf"]; ?><br />
+	</div>
+</div>
+
+<br /><br />
+
+<!-- primeiro quadro -->
+<div class="container-row">
+	<div class="container-bank-logo"></div>
+	<div class="large-vertical-separator" style="float: left; margin: 12px 3px 0 4px;"></div>
+	<div class="large-font" style="float: left; margin-top: 13px;">
+		<?php echo $dadosboleto["codigo_banco_com_dv"]; ?>
+	</div>
+	<div class="large-vertical-separator" style="float: left; margin: 12px 4px 0 3px;"></div>
+	<div class="medium-font" style="float: left; margin-top: 16px;">
+		<?php echo $dadosboleto["linha_digitavel"]; ?>
+	</div>
+</div>
+<br /><br />
+<div class="container-row">
+	<div class="solid-line"></div>
+</div>
+<div class="container-row tiny-font" style="height: 19px;">
+	<div class="small-vertical-separator" style="float: left; margin-right: 6px;"></div>
+	<div style="float: left;">
+		Cedente
+	</div>
+	<div class="small-vertical-separator" style="float: left; margin-right: 6px;"></div>
+	<div style="float: left;">
+		Agência / Código do Cedente
+	</div>
+	<div class="small-vertical-separator" style="float: left; margin-right: 6px;"></div>
+	<div style="float: left;">
+		Espécie
+	</div>
+	<div class="small-vertical-separator" style="float: left; margin-right: 6px;"></div>
+	<div style="float: left;">
+		Quantidade
+	</div>
+	<div class="small-vertical-separator" style="float: left; margin-right: 6px;"></div>
+	<div style="float: left;">
+		Nosso Número
+	</div>
+</div>
+
+
+
+
+
+
+
+<br><br><br><br><br><br>
+<table cellspacing=0 cellpadding=0 border=0>
+	<tbody>
+		<tr><td class=ct valign=top width=7 height=13><img height=13 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png width=1 border=0></td><td class=ct valign=top width=298 height=13>Cedente</td><td class=ct valign=top width=7 height=13><img height=13 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png width=1 border=0></td><td class=ct valign=top width=126 height=13>Agência/Código
 do Cedente</td><td class=ct valign=top width=7 height=13><img height=13 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png width=1 border=0></td><td class=ct valign=top width=34 height=13>Espécie</td><td class=ct valign=top width=7 height=13><img height=13 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png width=1 border=0></td><td class=ct valign=top width=53 height=13>Quantidade</td><td class=ct valign=top width=7 height=13><img height=13 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png width=1 border=0></td><td class=ct valign=top width=120 height=13>Nosso
 número</td></tr><tr><td class=cp valign=top width=7 height=12><img height=12 src=<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>skin/frontend/default/default/images/maxima/bankslip/1.png width=1 border=0></td><td class=cp valign=top width=298 height=12>
   <span class="campo"><?php echo $dadosboleto["cedente"]; ?></span></td>

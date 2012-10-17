@@ -1,5 +1,3 @@
-Boleto Bancário
-<br /><br />
 <?php
 	
 	
@@ -10,8 +8,19 @@ Boleto Bancário
 			$slip = Mage::getModel('Maxima_BankSlip/slip')->loadByOrder($order);
 			$statuses =Mage::getModel('Maxima_BankSlip/slip_status')->toArray();
 			
+			$htmlSlipLink = Mage::getUrl("bankslip/index/view", array("order" => $order->getIncrementId()));
+			
+			echo '<a href="' . $htmlSlipLink . '" target="_blank" title="' . $this->__("Click to view") . '">' . $this->__("Bank Slip") . '</a><br /><br />';
 			echo $this->__("Current state") . ": " . $this->__($statuses[$slip->getStatus()]);
 		}
+		else
+		{
+			
+		}
+	}
+	else
+	{
+		
 	}
 
 ?>
