@@ -4,7 +4,7 @@ if(!$this->getOrder() || !$this->getSlip())
 {
 	return;
 }
-
+/*
 // confere se o usuario estah logado
 if(!Mage::helper('customer')->getCustomer()->getId())
 {
@@ -16,6 +16,6 @@ if(Mage::helper('customer')->getCustomer()->getId() != $this->getOrder()->getCus
 {
 	return;
 }
-
+*/
 // define qual bloco importar, de acordo com o banco
 echo $this->getChildHtml("Maxima_BankSlip." . $this->getSlip()->getBank());
