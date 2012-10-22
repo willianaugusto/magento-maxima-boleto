@@ -116,4 +116,18 @@ class Maxima_BankSlip_Model_Slip extends Mage_Core_Model_Abstract
 			return $this;
 		}
 	}
+	
+	
+	public function getReturnFileInformation()
+	{
+		// busca inforcao no banco e retorna em forma de vetor
+		$readConn = $this->getResource()->getReadConnection();
+		
+		$sql = "SELECT name, date, type " . 
+				"FROM maxima_bankslip_file " . 
+				"WHERE id = " . $this->getReturnFile();
+		
+		$result =  $readConn->fetchAll($sql);
+		return $result[0];
+	}
 }

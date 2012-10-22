@@ -1,0 +1,76 @@
+<?php
+
+	if( Mage::registry('bankslip_slip_data') && Mage::registry('bankslip_slip_data')->getId()) 
+	{
+		$slip = Mage::registry('bankslip_slip_data');
+		$order = Mage::getModel('sales/order')->load($slip->getOrderId());
+		$returnFileInfo = $slip->getReturnFileInformation();
+		
+		$statuses = Mage::getModel('Maxima_BankSlip/slip_status')->toArray();
+		$banks = Mage::getModel('Maxima_BankSlip/bank')->toArray();
+	} 
+	else 
+	{
+		$slip = Mage::getModel('Maxima_BankSlip/slip');
+		$order = Mage::getModel('sales/order');
+	}
+	
+?>
+
+	<div class="content-header">
+		<h3 class="icon-head head-sales-order"><?php echo Mage::helper('Maxima_BankSlip')->__('Bank Slip # %s', $slip->getId()); ?></h3>
+	</div>
+	
+	<div class="box-left">
+		<!-- Slip Base Information-->
+		<div class="entry-edit">
+			<div class="entry-edit-head">
+				<h4 class="icon-head head-account"><?php echo Mage::helper('Maxima_BankSlip')->__('Information'); ?></h4>
+			</div>
+			<div class="fieldset">
+				<table cellspacing="0" class="form-list">
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('Maxima_BankSlip')->__('Order ID') ?></label></td>
+					<td class="value"><strong><?php echo "# " . $order->getIncrementId(); ?></strong></td>
+				</tr>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('Maxima_BankSlip')->__('Bank') ?></label></td>
+					<td class="value"><strong><?php echo $banks[$slip->getBank()]; ?></strong></td>
+				</tr>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('Maxima_BankSlip')->__('Created At') ?></label></td>
+					<td class="value"><strong><?php echo $this->formatDate($order->getCreatedAt(), 'medium', true); ?></strong></td>
+				</tr>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('Maxima_BankSlip')->__('Status') ?></label></td>
+					<td class="value"><strong><?php echo $statuses[$slip->getStatus()]; ?></strong></td>
+				</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="box-right">
+		<!-- Return File Information-->
+		<div class="entry-edit">
+			<div class="entry-edit-head">
+				<h4 class="icon-head head-account"><?php echo Mage::helper('Maxima_BankSlip')->__('Return File'); ?></h4>
+			</div>
+			<div class="fieldset">
+				<table cellspacing="0" class="form-list">
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('Maxima_BankSlip')->__('File Name') ?></label></td>
+					<td class="value"><strong><?php echo $returnFileInfo['name']; ?></strong></td>
+				</tr>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('Maxima_BankSlip')->__('Type') ?></label></td>
+					<td class="value"><strong><?php echo $returnFileInfo['type']; ?></strong></td>
+				</tr>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('Maxima_BankSlip')->__('Submitted At') ?></label></td>
+					<td class="value"><strong><?php echo $this->formatDate($returnFileInfo['date'], 'medium', true); ?></strong></td>
+				</tr>
+				</table>
+			</div>
+		</div>
+	</div>
