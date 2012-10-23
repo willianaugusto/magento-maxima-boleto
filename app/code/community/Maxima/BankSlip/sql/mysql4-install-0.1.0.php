@@ -6,6 +6,20 @@ $installer->startSetup();
 
 $installer->run
 ("
+	DROP TABLE IF EXISTS `maxima_bankslip_file`;
+	CREATE TABLE  `maxima_bankslip_file`
+	(
+		`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		`date` datetime DEFAULT NULL,
+		`name` varchar(200) DEFAULT NULL,
+		`type` varchar(10) DEFAULT NULL,
+		`content` longtext,
+		PRIMARY KEY (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+");
+
+$installer->run
+("
 	DROP TABLE IF EXISTS `maxima_bankslip_slip`;
 	CREATE TABLE `maxima_bankslip_slip`
 	(
@@ -21,18 +35,6 @@ $installer->run
 	) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 ");
 
-$installer->run
-("
-	DROP TABLE IF EXISTS `maxima_bankslip_file`;
-	CREATE TABLE  `maxima_bankslip_file`
-	(
-		`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-		`date` datetime DEFAULT NULL,
-		`name` varchar(200) DEFAULT NULL,
-		`type` varchar(10) DEFAULT NULL,
-		`content` longtext,
-		PRIMARY KEY (`id`)
-	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-");
+
  
 $installer->endSetup(); 
