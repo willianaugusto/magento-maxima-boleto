@@ -61,6 +61,15 @@
 				</Maxima_BankSlip>
 			</updates>
 		</layout>
+		<translate>
+			<modules>
+				<Maxima_BankSlip>
+					<files>
+						<default>Maxima_BankSlip.csv</default>
+					</files>
+				</Maxima_BankSlip>
+			</modules>
+		</translate>
 	</adminhtml>
 	
 	<admin>
@@ -92,6 +101,15 @@
 				</Maxima_BankSlip>
 			</updates>
 		</layout>
+		<translate>
+			<modules>
+				<Maxima_BankSlip>
+					<files>
+						<default>Maxima_BankSlip.csv</default>
+					</files>
+				</Maxima_BankSlip>
+			</modules>
+		</translate>
 	</frontend>
 	
 	<default>
@@ -101,7 +119,6 @@
 				<active>0</active>
 				<title>Bank Payment Slip</title>
 				<payment_term>5</payment_term>
-				<slip_cost>2.95</slip_cost>
 			</Maxima_BankSlip>
 		</payment>
 	</default>

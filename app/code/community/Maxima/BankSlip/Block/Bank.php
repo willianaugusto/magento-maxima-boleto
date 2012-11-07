@@ -24,12 +24,11 @@ class Maxima_BankSlip_Block_Bank extends Mage_Core_Block_Template
 			$dadosboleto["cidade_uf"] 			= $this->getConfigData('company_city_state');
 			$dadosboleto["cedente"] 			= $this->getConfigData('company_official_name');
 			$dias_de_prazo_para_pagamento 		= $this->getConfigData('payment_term');
-			$taxa_boleto 						= $this->getConfigData('slip_cost');
 			
 			$data_venc 							= date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
 			$valor_cobrado 						= $order->getGrandTotal(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 			$valor_cobrado 						= str_replace(",", ".",$valor_cobrado);
-			$valor_boleto 						= number_format($valor_cobrado + $taxa_boleto, 2, ',', '');
+			$valor_boleto 						= number_format($valor_cobrado, 2, ',', '');
 
 			$dadosboleto["nosso_numero"] 		= $this->_formatSlipNumber($order->getId());
 			$dadosboleto["numero_documento"] 	= $order->getIncrementId();	// Num do pedido ou do documento
@@ -50,13 +49,13 @@ class Maxima_BankSlip_Block_Bank extends Mage_Core_Block_Template
 												  $order->getBillingAddress()->getData('postcode');
 
 			// INFORMACOES PARA O CLIENTE
-			$dadosboleto["demonstrativo1"] 		= $this->__("Payment of an order realized in ") . Mage::getBaseUrl();
-			$dadosboleto["demonstrativo2"] 		= $this->__("Slip tax - ") . Mage::helper('core')->currency($taxa_boleto, true, false);
+			$dadosboleto["demonstrativo1"] 		= $this->__("Pagamento por compra realizada em ") . Mage::getBaseUrl();
+			$dadosboleto["demonstrativo2"] 		= "";
 
 			// INSTRUÇÕES PARA O CAIXA
-			$dadosboleto["instrucoes1"] 		= $this->__("- Mr Bank Teller, please charge late payment penalty of 2% of the value after the expiration date");
-			$dadosboleto["instrucoes2"] 		= $this->__("- Recieve at most 10 days after the expiration date");
-			$dadosboleto["instrucoes3"] 		= $supportEmail ? $this->__("- Questions, ask ")  . $supportEmail : "";
+			$dadosboleto["instrucoes1"] 		= $this->__("- Sr Caixa, por favor cobre 2% do valor total como penalidade por atraso após a data de vencimento");
+			$dadosboleto["instrucoes2"] 		= $this->__("- Aceitar no máximo até 10 dias após o vencimento");
+			$dadosboleto["instrucoes3"] 		= $supportEmail ? $this->__("- Em caso de dúvidas, envie e-mail para ")  . $supportEmail : "";
 			$dadosboleto["instrucoes4"] 		= "";
 
 			// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
