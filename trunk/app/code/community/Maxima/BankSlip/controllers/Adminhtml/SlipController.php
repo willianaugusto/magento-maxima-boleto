@@ -43,4 +43,9 @@ class Maxima_BankSlip_Adminhtml_SlipController extends Mage_Adminhtml_Controller
 			$this->_redirect('*/*/');
 		}
 	}
+	
+	protected function _isAllowed()
+	{
+		return Mage::getSingleton('admin/session')->isAllowed('maxima/bankslip/list');
+	}
 }
