@@ -104,6 +104,6 @@ class Maxima_BankSlip_Adminhtml_ReturnFileController extends Mage_Adminhtml_Cont
 	
 	protected function _isAllowed()
 	{
-		return Mage::getSingleton('admin/session')->isAllowed('maxima/form');
+		return Mage::getSingleton('admin/session')->isAllowed('maxima/bankslip/list');
 	}
 }
