@@ -1,0 +1,1 @@
+Módulo de Boletos Bancários para o Magento.
